@@ -1,0 +1,262 @@
+#include "gazebo/common/common.hh"
+#include "gazebo/physics/physics.hh"
+#include "gazebo/common/Events.hh"
+#include "gazebo/common/PID.hh"
+
+// basic control of the leg joints dusing functions
+
+namespace gazebo
+{
+  class PID1Joints : public ModelPlugin
+  {
+    public: void Load(physics::ModelPtr _model, sdf::ElementPtr /*_sdf*/)
+    {
+      this->model_ = _model;
+      // initialize a PID class
+      this->target_position_ = 0.0;
+// leg joints
+      this->pid_j_ankle2_r.Init(100, 0, 0, 0, 0, 25, -25);
+      this->pid_j_ankle2_r.SetCmd(this->target_position_);
+      this->ankle2_r_joint_ = this->model_->GetJoint("j_ankle2_r");
+
+      this->pid_j_ankle1_r.Init(100, 0, 0, 0, 0, 25, -25);
+      this->pid_j_ankle1_r.SetCmd(this->target_position_);
+      this->ankle1_r_joint_ = this->model_->GetJoint("j_ankle1_r");
+
+      this->pid_j_tibia_r.Init(100, 0, 0, 0, 0, 25, -25);
+      this->pid_j_tibia_r.SetCmd(this->target_position_);
+      this->tibia_r_joint_ = this->model_->GetJoint("j_tibia_r");
+
+      this->pid_j_thigh2_r.Init(100, 0, 0, 0, 0, 25, -25);
+      this->pid_j_thigh2_r.SetCmd(this->target_position_);
+      this->thigh2_r_joint_ = this->model_->GetJoint("j_thigh2_r");
+
+      this->pid_j_thigh1_r.Init(100, 0, 0, 0, 0, 25, -25);
+      this->pid_j_thigh1_r.SetCmd(this->target_position_);
+      this->thigh1_r_joint_ = this->model_->GetJoint("j_thigh1_r");
+// left leg
+      this->pid_j_ankle2_l.Init(100, 0, 0, 0, 0, 25, -25);
+      this->pid_j_ankle2_l.SetCmd(this->target_position_);
+      this->ankle2_l_joint_ = this->model_->GetJoint("j_ankle2_l");
+
+      this->pid_j_ankle1_l.Init(100, 0, 0, 0, 0, 25, -25);
+      this->pid_j_ankle1_l.SetCmd(this->target_position_);
+      this->ankle1_l_joint_ = this->model_->GetJoint("j_ankle1_l");
+
+      this->pid_j_tibia_l.Init(100, 0, 0, 0, 0, 25, -25);
+      this->pid_j_tibia_l.SetCmd(this->target_position_);
+      this->tibia_l_joint_ = this->model_->GetJoint("j_tibia_l");
+
+      this->pid_j_thigh2_l.Init(100, 0, 0, 0, 0, 25, -25);
+      this->pid_j_thigh2_l.SetCmd(this->target_position_);
+      this->thigh2_l_joint_ = this->model_->GetJoint("j_thigh2_l");
+
+      this->pid_j_thigh1_l.Init(100, 0, 0, 0, 0, 25, -25);
+      this->pid_j_thigh1_l.SetCmd(this->target_position_);
+      this->thigh1_l_joint_ = this->model_->GetJoint("j_thigh1_l");
+
+      this->last_update_time_ = this->model_->GetWorld()->GetSimTime();
+      this->update_connection_ = event::Events::ConnectWorldUpdateStart(
+        boost::bind(&PID1Joints::UpdatePID, this));
+    }
+    void UpdatePID()
+    {loop_No =loop_No + 1;
+      common::Time current_time = this->model_->GetWorld()->GetSimTime();
+      error = this->ankle2_r_joint_->GetAngle(0).Radian()
+                   - target_position_;
+      dt    = current_time.Double()
+                   - this->last_update_time_.Double();
+      this->pid_j_ankle2_r.Update(error, dt);
+      this->ankle2_r_joint_->SetForce(0, this->pid_j_ankle2_r.GetCmd());
+//      gzdbg << "error [" << error
+//            << "] cmd [" << this->pid_j_ankle2_r.GetCmd() << "]\n";
+
+      error = this->ankle1_r_joint_->GetAngle(0).Radian()
+                   - target_position_;
+      this->pid_j_ankle1_r.Update(error, dt);
+      this->ankle1_r_joint_->SetForce(0, this->pid_j_ankle1_r.GetCmd());
+
+
+// Hip pitch joints
+      error = this->thigh2_r_joint_->GetAngle(0).Radian()
+                   - target_position_;
+      this->pid_j_thigh2_r.Update(error, dt);
+      this->thigh2_r_joint_->SetForce(0, this->pid_j_thigh2_r.GetCmd());
+      error = this->thigh2_l_joint_->GetAngle(0).Radian()
+                   - target_position_;
+      this->pid_j_thigh2_l.Update(error, dt);
+      this->thigh2_l_joint_->SetForce(0, this->pid_j_thigh2_l.GetCmd());
+
+      if (loop_No <= 100)
+      { // the  
+      error = this->tibia_r_joint_->GetAngle(0).Radian()
+                   - target_position_;
+      this->pid_j_tibia_r.Update(error, dt);
+      this->tibia_r_joint_->SetForce(0, this->pid_j_tibia_r.GetCmd());
+      error = this->tibia_l_joint_->GetAngle(0).Radian()
+                   - target_position_;
+      this->pid_j_tibia_l.Update(error, dt);
+      this->tibia_l_joint_->SetForce(0, this->pid_j_tibia_l.GetCmd());
+      k_thigh1_l = 0;
+      k_ankle1_l = 0;
+      k_tibia_l = 0;
+      k_thigh2_l = 0;
+      }
+      else
+      {
+      k_tibia_r = k_tibia_r + 0.0005;
+      function_tibia_r(k_tibia_r);
+//      k_tibia_l = k_tibia_l - 0.000025;
+      function_tibia_l(k_tibia_l);
+
+      k_thigh2_r = k_thigh2_r - 0.0005;
+      function_thigh2_r(k_thigh2_r);
+//      k_thigh2_l = k_thigh2_l + 0.0005;
+      function_thigh2_l(k_thigh2_l);
+//      if (k_thigh2_r < - 0.005)
+//      {
+//      k_thigh1_l = k_thigh1_l - 0.0003;
+      k_ankle2_l = k_ankle2_l + 0.003;
+//      }
+      function_thigh2_l(k_thigh2_l);
+      function_ankle1_l(k_ankle1_l);
+      }
+      error = this->thigh1_r_joint_->GetAngle(0).Radian()
+                   - target_position_;
+      this->pid_j_thigh1_r.Update(error, dt);
+      this->thigh1_r_joint_->SetForce(0, this->pid_j_thigh1_r.GetCmd());
+
+// left leg
+      error = this->ankle2_l_joint_->GetAngle(0).Radian()
+                   - target_position_;
+      this->pid_j_ankle2_l.Update(error, dt);
+      this->ankle2_l_joint_->SetForce(0, this->pid_j_ankle2_l.GetCmd());
+
+      error = this->ankle1_l_joint_->GetAngle(0).Radian()
+                   - target_position_;
+      this->pid_j_ankle1_l.Update(error, dt);
+      this->ankle1_l_joint_->SetForce(0, this->pid_j_ankle1_l.GetCmd());
+
+
+      error = this->thigh1_l_joint_->GetAngle(0).Radian()
+                   - target_position_;
+      this->pid_j_thigh1_l.Update(error, dt);
+      this->thigh1_l_joint_->SetForce(0, this->pid_j_thigh1_l.GetCmd());
+
+      this->last_update_time_ = current_time;
+
+
+    }
+    
+    void function_tibia_r(double k_tibia_r)
+    {
+      this->pid_j_tibia_r.SetCmd(k_tibia_r);       
+      error = this->tibia_r_joint_->GetAngle(0).Radian()
+                   - k_tibia_r;
+      this->pid_j_tibia_r.Update(error, dt);
+      this->tibia_r_joint_->SetForce(0, this->pid_j_tibia_r.GetCmd());
+      
+    }
+
+    void function_tibia_l(double k_tibia_l)
+    {
+      this->pid_j_tibia_l.SetCmd(k_tibia_l);       
+      error = this->tibia_l_joint_->GetAngle(0).Radian()
+                   - k_tibia_l;
+      this->pid_j_tibia_l.Update(error, dt);
+      this->tibia_l_joint_->SetForce(0, this->pid_j_tibia_l.GetCmd());
+      
+    }
+
+    void function_thigh2_r(double k_thigh2_r)
+    {
+
+      this->pid_j_thigh2_r.SetCmd(k_thigh2_r); 
+      error = this->thigh2_r_joint_->GetAngle(0).Radian()
+                   - k_thigh2_r;
+      this->pid_j_thigh2_r.Update(error, dt);
+      this->thigh2_r_joint_->SetForce(0, this->pid_j_thigh2_r.GetCmd
+());
+    }
+
+    void function_thigh2_l(double k_thigh2_l)
+    {
+      this->pid_j_thigh2_l.SetCmd(k_thigh2_l); 
+      error = this->thigh2_l_joint_->GetAngle(0).Radian()
+                   - k_thigh2_l;
+      this->pid_j_thigh2_l.Update(error, dt);
+      this->thigh2_l_joint_->SetForce(0, this->pid_j_thigh2_l.GetCmd());
+    }
+
+
+    void function_thigh1_l(double k_thigh1_l)
+    {
+      this->pid_j_thigh1_l.SetCmd(k_thigh1_l); 
+      error = this->thigh1_l_joint_->GetAngle(0).Radian()
+                   - k_thigh1_l;
+      this->pid_j_thigh1_l.Update(error, dt);
+      this->thigh1_l_joint_->SetForce(0, this->pid_j_thigh1_l.GetCmd());
+    }
+
+    void function_ankle1_l(double k_ankle1_l)
+    {
+      this->pid_j_ankle1_l.SetCmd(k_ankle1_l); 
+      error = this->ankle1_l_joint_->GetAngle(0).Radian()
+                   - k_ankle1_l;
+      this->pid_j_ankle1_l.Update(error, dt);
+      this->ankle1_l_joint_->SetForce(0, this->pid_j_ankle1_l.GetCmd());
+    }
+
+//    common::PID pid;
+// PID controllers for each joint :
+    common::PID pid_j_ankle2_r;
+    common::PID pid_j_ankle1_r;
+    common::PID pid_j_tibia_r;
+    common::PID pid_j_thigh2_r;
+    common::PID pid_j_thigh1_r;
+    common::PID pid_j_ankle2_l;
+    common::PID pid_j_ankle1_l;
+    common::PID pid_j_tibia_l;
+    common::PID pid_j_thigh2_l;
+    common::PID pid_j_thigh1_l;
+
+// pid controllers for the leg joints
+
+    double target_position_;
+    double k_ankle2_r;
+    double k_ankle1_r;
+    double k_tibia_r;
+    double k_thigh2_r;
+    double k_thigh1_r;
+    double k_ankle2_l;
+    double k_ankle1_l;
+    double k_tibia_l;
+    double k_thigh2_l;
+    double k_thigh1_l;
+    double error;
+    double dt;
+    long loop_No;
+
+// ** Pointers for each joints
+
+    physics::JointPtr ankle2_r_joint_;
+    physics::JointPtr ankle1_r_joint_;
+    physics::JointPtr tibia_r_joint_;
+    physics::JointPtr thigh2_r_joint_;
+    physics::JointPtr thigh1_r_joint_;
+    physics::JointPtr ankle2_l_joint_;
+    physics::JointPtr ankle1_l_joint_;
+    physics::JointPtr tibia_l_joint_;
+    physics::JointPtr thigh2_l_joint_;
+    physics::JointPtr thigh1_l_joint_;
+
+
+
+    physics::ModelPtr model_;
+    event::ConnectionPtr update_connection_;
+    common::Time last_update_time_;
+  };
+
+  // Register this plugin with the simulator
+  GZ_REGISTER_MODEL_PLUGIN(PID1Joints)
+}
