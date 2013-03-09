@@ -1,1 +1,0 @@
-/usr/bin/c++  -fPIC    -shared -Wl,-soname,libdarwin_plugin.so -o libdarwin_plugin.so CMakeFiles/darwin_plugin.dir/darwin_plugin.cc.o -L/usr/lib/gazebo-1.3/plugins -lgazebo_transport -lgazebo_physics -lgazebo_sensors -lgazebo_rendering -lgazebo_sdf_interface -lgazebo_msgs -lgazebo_math -lgazebo_common -Wl,-rpath,/usr/lib/gazebo-1.3/plugins 
