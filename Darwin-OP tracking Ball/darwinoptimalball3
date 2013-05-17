@@ -1,0 +1,1996 @@
+<?xml version="1.0" ?>
+<sdf version='1.4'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0.000000 0.000000 10.000000 0.000000 0.000000 0.000000</pose>
+      <diffuse>0.800000 0.800000 0.800000 1.000000</diffuse>
+      <specular>0.100000 0.100000 0.100000 1.000000</specular>
+      <attenuation>
+        <range>1000.000000</range>
+        <constant>0.900000</constant>
+        <linear>0.010000</linear>
+        <quadratic>0.001000</quadratic>
+      </attenuation>
+      <direction>-0.500000 0.500000 -1.000000</direction>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0.000000 0.000000 1.000000</normal>
+              <size>100.000000 100.000000</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+              <!--ode><mu>100000000000.0</mu><mu2>-100000000000.0</mu2></ode>
+              <ode><mu>0.0</mu><mu2>0.0</mu2></ode-->
+              <!--ode>
+                <mu>10000000.000000</mu>
+                <mu2>10000000.000000</mu2>
+                <fdir1>1.000000 1.000000 0.000000</fdir1>
+                <slip1>0.000000</slip1>
+                <slip2>0.000000</slip2>
+              </ode-->
+            </friction>
+            <bounce/>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0.000000 0.000000 1.000000</normal>
+              <size>100.000000 100.000000</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+    <physics type='ode'>
+      <max_step_size>0.001000</max_step_size>
+      <real_time_factor>1.000000</real_time_factor>
+      <real_time_update_rate>1000.000000</real_time_update_rate>
+      <gravity>0.000000 0.000000 -9.800000</gravity>
+    </physics>
+    <scene>
+      <ambient>0.200000 0.200000 0.200000 1.000000</ambient>
+      <background>0.700000 0.700000 0.700000 1.000000</background>
+      <shadows>1</shadows>
+    </scene>
+    <model name='darwinOP'>
+      <link name='MP_BODY'>
+        <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+        <inertial>
+          <pose>-0.003053 -0.038651 -0.019268 0.000000 0.000000 0.000000</pose>
+          <mass>0.995599</mass>
+          <inertia>
+            <ixx>9.324660</ixx>
+            <ixy>-0.254598</ixy>
+            <ixz>2.031820</ixz>
+            <iyy>17.042100</iyy>
+            <iyz>-0.164203</iyz>
+            <izz>18.089300</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_BODY_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/body_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <collision name='MP_BODY_collision_MP_BACK_L'>
+          <pose>0.000000 0.060350 0.000000 -1.570800 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.001000 0.001000 0.001000</size>
+            </box>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <collision name='MP_BODY_collision_MP_BACK_R'>
+          <pose>0.000000 -0.060350 0.000000 1.570800 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.001000 0.001000 0.001000</size>
+            </box>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_BODY_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/body.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='MP_BODY_vis_MP_BACK_L'>
+          <pose>0.000000 0.060350 0.000000 -1.570800 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.001000 0.001000 0.001000</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name='MP_BODY_vis_MP_BACK_R'>
+          <pose>0.000000 -0.060350 0.000000 1.570800 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.001000 0.001000 0.001000</size>
+            </box>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <link name='MP_SHOULDER_L'>
+        <pose>0.000000 0.060350 0.000000 2.356195 -1.570793 2.356195</pose>
+        <inertial>
+          <pose>-0.013523 0.010264 0.001394 0.000000 0.000000 0.000000</pose>
+          <mass>0.025913</mass>
+          <inertia>
+            <ixx>0.009776</ixx>
+            <ixy>0.001691</ixy>
+            <ixz>-0.000452</ixz>
+            <iyy>0.010511</iyy>
+            <iyz>0.000334</iyz>
+            <izz>0.005477</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_SHOULDER_L_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/shoulder_l_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_SHOULDER_L_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/shoulder_l.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_shoulder_l' type='revolute'>
+        <child>MP_SHOULDER_L</child>
+        <parent>MP_BODY</parent>
+        <axis>
+          <xyz>0.000000 1.000000 0.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>2.800000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ARM_HIGH_L'>
+        <pose>0.000000 0.082000 -0.016000 1.570800 -0.785398 -1.570800</pose>
+        <inertial>
+          <pose>-0.036239 0.000734 0.000660 0.000000 0.000000 0.000000</pose>
+          <mass>0.168377</mass>
+          <inertia>
+            <ixx>0.122028</ixx>
+            <ixy>-0.002081</ixy>
+            <ixz>-0.000881</ixz>
+            <iyy>0.038088</iyy>
+            <iyz>0.001825</iyz>
+            <izz>0.113408</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ARM_HIGH_L_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/arm_high_l_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ARM_HIGH_L_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/arm_high_l.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_high_arm_l' type='revolute'>
+        <child>MP_ARM_HIGH_L</child>
+        <parent>MP_SHOULDER_L</parent>
+        <axis>
+          <xyz>-1.000000 0.000000 0.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>2.800000</effort>
+            <velocity>5.648670</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ARM_LOW_L'>
+        <pose>0.016000 0.124426 -0.058426 -0.785398 0.000000 0.000000</pose>
+        <inertial>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <mass>0.059289</mass>
+          <inertia>
+            <ixx>0.086855</ixx>
+            <ixy>0.005302</ixy>
+            <ixz>0.000436</ixz>
+            <iyy>0.021192</iyy>
+            <iyz>-0.006486</iyz>
+            <izz>0.086846</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ARM_LOW_L_collision'>
+          <pose>0.016000 0.016000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.032000 0.035000</size>
+            </box>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ARM_LOW_L_vis'>
+          <pose>0.016000 0.016000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.032000 0.035000</size>
+            </box>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_low_arm_l' type='revolute'>
+        <child>MP_ARM_LOW_L</child>
+        <parent>MP_ARM_HIGH_L</parent>
+        <axis>
+          <xyz>0.000000 0.707107 0.707107</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>2.800000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ARM_GRIPPER_FIX_L'>
+        <pose>0.064000 0.135740 -0.069740 0.785398 0.000000 0.000000</pose>
+        <inertial>
+          <pose>0.045838 -0.013490 0.006666 0.000000 0.000000 0.000000</pose>
+          <mass>0.020000</mass>
+          <inertia>
+            <ixx>0.244098</ixx>
+            <ixy>-0.004028</ixy>
+            <ixz>-0.001763</ixz>
+            <iyy>0.076219</iyy>
+            <iyz>0.003650</iyz>
+            <izz>0.226899</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ARM_GRIPPER_FIX_L_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.064000 0.032000 0.032000</size>
+            </box>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <collision name='MP_ARM_GRIPPER_FIX_L_collision_MP_ARM_GRIPPER_FIX_DUMMY_L'>
+          <pose>0.064000 -0.010000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.005000 0.032000</size>
+            </box>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ARM_GRIPPER_FIX_L_vis'>
+          <pose>0.016000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.064000 0.032000 0.032000</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name='MP_ARM_GRIPPER_FIX_L_vis_MP_ARM_GRIPPER_FIX_DUMMY_L'>
+          <pose>0.064000 -0.010000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.005000 0.032000</size>
+            </box>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_wrist_l' type='revolute'>
+        <child>MP_ARM_GRIPPER_FIX_L</child>
+        <parent>MP_ARM_LOW_L</parent>
+        <axis>
+          <xyz>0.000000 -0.707107 0.707107</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>2.800000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ARM_GRIPPER_MOV_L'>
+        <pose>0.112000 0.142811 -0.062669 0.785398 0.000000 0.000000</pose>
+        <inertial>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <mass>0.010000</mass>
+          <inertia>
+            <ixx>0.122028</ixx>
+            <ixy>-0.002081</ixy>
+            <ixz>-0.000881</ixz>
+            <iyy>0.038088</iyy>
+            <iyz>0.001825</iyz>
+            <izz>0.113408</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ARM_GRIPPER_MOV_L_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.005000 0.032000</size>
+            </box>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ARM_GRIPPER_MOV_L_vis'>
+          <pose>0.016000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.005000 0.032000</size>
+            </box>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_gripper_l' type='revolute'>
+        <child>MP_ARM_GRIPPER_MOV_L</child>
+        <parent>MP_ARM_GRIPPER_FIX_L</parent>
+        <axis>
+          <xyz>0.000000 -0.707107 0.707107</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>2.800000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_SHOULDER_R'>
+        <pose>0.000000 -0.060350 0.000000 -2.356195 -1.570793 -2.356195</pose>
+        <inertial>
+          <pose>-0.013523 0.010264 0.001394 0.000000 0.000000 0.000000</pose>
+          <mass>0.025913</mass>
+          <inertia>
+            <ixx>0.009776</ixx>
+            <ixy>0.001691</ixy>
+            <ixz>-0.000452</ixz>
+            <iyy>0.010511</iyy>
+            <iyz>0.000334</iyz>
+            <izz>0.005477</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_SHOULDER_R_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/shoulder_r_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_SHOULDER_R_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/shoulder_r.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_shoulder_r' type='revolute'>
+        <child>MP_SHOULDER_R</child>
+        <parent>MP_BODY</parent>
+        <axis>
+          <xyz>0.000000 -1.000000 0.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>2.800000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ARM_HIGH_R'>
+        <pose>0.000000 -0.082000 -0.016000 -1.570800 -0.785398 1.570800</pose>
+        <inertial>
+          <pose>-0.036239 0.000734 -0.000660 0.000000 0.000000 0.000000</pose>
+          <mass>0.168377</mass>
+          <inertia>
+            <ixx>0.122028</ixx>
+            <ixy>-0.002081</ixy>
+            <ixz>-0.000881</ixz>
+            <iyy>0.038088</iyy>
+            <iyz>0.001825</iyz>
+            <izz>0.113408</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ARM_HIGH_R_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/arm_high_r_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ARM_HIGH_R_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/arm_high_r.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_high_arm_r' type='revolute'>
+        <child>MP_ARM_HIGH_R</child>
+        <parent>MP_SHOULDER_R</parent>
+        <axis>
+          <xyz>-1.000000 0.000000 0.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>2.800000</effort>
+            <velocity>5.648670</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ARM_LOW_R'>
+        <pose>0.016000 -0.124426 -0.058426 0.785398 0.000000 0.000000</pose>
+        <inertial>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <mass>0.059289</mass>
+          <inertia>
+            <ixx>0.086855</ixx>
+            <ixy>0.005302</ixy>
+            <ixz>0.000436</ixz>
+            <iyy>0.021192</iyy>
+            <iyz>-0.006486</iyz>
+            <izz>0.086846</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ARM_LOW_R_collision'>
+          <pose>0.016000 -0.016000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.032000 0.035000</size>
+            </box>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ARM_LOW_R_vis'>
+          <pose>0.016000 -0.016000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.032000 0.035000</size>
+            </box>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_low_arm_r' type='revolute'>
+        <child>MP_ARM_LOW_R</child>
+        <parent>MP_ARM_HIGH_R</parent>
+        <axis>
+          <xyz>0.000000 -0.707107 0.707107</xyz>
+          <limit>
+            <lower>-1.635000</lower>
+            <upper>1.150000</upper>
+            <effort>2.800000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ARM_GRIPPER_FIX_R'>
+        <pose>0.064000 -0.135740 -0.069740 2.356190 0.000000 0.000000</pose>
+        <inertial>
+          <pose>0.045838 -0.013490 0.006666 0.000000 0.000000 0.000000</pose>
+          <mass>0.020000</mass>
+          <inertia>
+            <ixx>0.244098</ixx>
+            <ixy>-0.004028</ixy>
+            <ixz>-0.001763</ixz>
+            <iyy>0.076219</iyy>
+            <iyz>0.003650</iyz>
+            <izz>0.226899</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ARM_GRIPPER_FIX_R_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.064000 0.032000 0.032000</size>
+            </box>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <collision name='MP_ARM_GRIPPER_FIX_R_collision_MP_ARM_GRIPPER_FIX_DUMMY_R'>
+          <pose>0.064000 -0.010000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.005000 0.032000</size>
+            </box>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ARM_GRIPPER_FIX_R_vis'>
+          <pose>0.016000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.064000 0.032000 0.032000</size>
+            </box>
+          </geometry>
+        </visual>
+        <visual name='MP_ARM_GRIPPER_FIX_R_vis_MP_ARM_GRIPPER_FIX_DUMMY_R'>
+          <pose>0.064000 -0.010000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.005000 0.032000</size>
+            </box>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_wrist_r' type='revolute'>
+        <child>MP_ARM_GRIPPER_FIX_R</child>
+        <parent>MP_ARM_LOW_R</parent>
+        <axis>
+          <xyz>0.000000 -0.707107 -0.707107</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>2.800000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ARM_GRIPPER_MOV_R'>
+        <pose>0.112000 -0.142811 -0.062669 2.356190 0.000000 0.000000</pose>
+        <inertial>
+          <pose>0.000000 0.000000 0.0000000 0.000000 0.000000 0.000000</pose>
+          <mass>0.010000</mass>
+          <inertia>
+            <ixx>0.122028</ixx>
+            <ixy>-0.002081</ixy>
+            <ixz>-0.000881</ixz>
+            <iyy>0.038088</iyy>
+            <iyz>0.001825</iyz>
+            <izz>0.113408</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ARM_GRIPPER_MOV_R_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.005000 0.032000</size>
+            </box>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ARM_GRIPPER_MOV_R_vis'>
+          <pose>0.016000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <box>
+              <size>0.032000 0.005000 0.032000</size>
+            </box>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_gripper_r' type='revolute'>
+        <child>MP_ARM_GRIPPER_MOV_R</child>
+        <parent>MP_ARM_GRIPPER_FIX_R</parent>
+        <axis>
+          <xyz>0.000000 -0.707107 -0.707107</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>2.800000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_NECK'>
+        <pose>0.000000 0.000000 0.023500 0.000000 0.000000 1.570800</pose>
+        <inertial>
+          <pose>0.001424 -0.016567 -0.00712811 0.000000 0.000000 0.000000</pose>
+          <mass>0.024358</mass>
+          <inertia>
+            <ixx>0.005141</ixx>
+            <ixy>-0.000575</ixy>
+            <ixz>-0.000025</ixz>
+            <iyy>0.008192</iyy>
+            <iyz>-0.000019</iyz>
+            <izz>0.001138</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_NECK_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/neck_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_NECK_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/neck.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_pan' type='revolute'>
+        <child>MP_NECK</child>
+        <parent>MP_BODY</parent>
+        <axis>
+          <xyz>0.000000 0.000000 1.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>2.800000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_HEAD'>
+        <pose>0.000000 0.000000 0.050650 -1.570800 0.000000 3.141590</pose>
+        <inertial>
+          <pose>0.000064 -0.018565 -0.007667 0.000000 0.000000 0.000000</pose>
+          <mass>0.158042</mass>
+          <inertia>
+            <ixx>0.123968</ixx>
+            <ixy>0.000078</ixy>
+            <ixz>0.000008</ixz>
+            <iyy>0.117838</iyy>
+            <iyz>0.001220</iyz>
+            <izz>0.158360</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_HEAD_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/head_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_HEAD_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/head.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <sensor name='camera' type='camera'>
+          <pose>-0.050000 -0.010000 0.000000 0.000000 0.000000 -3.141592</pose>
+          <camera name='__default__'>
+            <horizontal_fov>1.012300</horizontal_fov>
+            <image>
+              <width>160</width>
+              <height>120</height>
+            </image>
+            <clip>
+              <near>0.001000</near>
+              <far>100.000000</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>30.000000</update_rate>
+          <visualize>1</visualize>
+          <plugin name='camera_dump' filename='libcamera_dump.so'/>
+        </sensor>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_tilt' type='revolute'>
+        <child>MP_HEAD</child>
+        <parent>MP_NECK</parent>
+        <axis>
+          <xyz>0.000000 -1.000000 0.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>2.800000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_PELVIS_L'>
+        <pose>-0.005000 0.037000 -0.093550 3.141590 0.000003 1.570800</pose>
+        <inertial>
+          <pose>0.000000 0.000480 0.018437 0.000000 0.000000 0.000000</pose>
+          <mass>0.167000</mass>
+          <inertia>
+            <ixx>0.122597</ixx>
+            <ixy>0.000711</ixy>
+            <ixz>0.000811</ixz>
+            <iyy>0.110666</iyy>
+            <iyz>-0.007164</iyz>
+            <izz>0.041878</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_PELVIS_L_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/pelvis_l_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_PELVIS_L_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/pelvis_l.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_pelvis_l' type='revolute'>
+        <child>MP_PELVIS_L</child>
+        <parent>MP_BODY</parent>
+        <axis>
+          <xyz>0.000000 -0.000003 -1.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_THIGH1_L'>
+        <pose>-0.005000 0.037000 -0.122202 -1.570800 0.000003 1.570800</pose>
+        <inertial>
+          <pose>0.000079 0.018242 0.013873 0.000000 0.000000 0.000000</pose>
+          <mass>0.119043</mass>
+          <inertia>
+            <ixx>0.097950</ixx>
+            <ixy>0.001212</ixy>
+            <ixz>-0.000212</ixz>
+            <iyy>0.032848</iyy>
+            <iyz>-0.001947</iyz>
+            <izz>0.114935</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_THIGH1_L_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/thigh1_l_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_THIGH1_L_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/thigh1_l.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_thigh1_l' type='revolute'>
+        <child>MP_THIGH1_L</child>
+        <parent>MP_PELVIS_L</parent>
+        <axis>
+          <xyz>-1.000000 0.000000 0.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_THIGH2_L'>
+        <pose>-0.005000 0.037000 -0.122202 -0.009996 -1.570790 1.580790</pose>
+        <inertial>
+          <pose>-0.062965 -0.000323 0.000692 0.000000 0.000000 0.000000</pose>
+          <mass>0.119043</mass>
+          <inertia>
+            <ixx>0.097950</ixx>
+            <ixy>0.001212</ixy>
+            <ixz>-0.000212</ixz>
+            <iyy>0.032848</iyy>
+            <iyz>-0.001947</iyz>
+            <izz>0.114935</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_THIGH2_L_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/thigh2_l_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_THIGH2_L_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/thigh2_l.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_thigh2_l' type='revolute'>
+        <child>MP_THIGH2_L</child>
+        <parent>MP_THIGH1_L</parent>
+        <axis>
+          <xyz>0.000000 -1.000000 0.000003</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_TIBIA_L'>
+        <pose>-0.005000 0.037000 -0.215202 -0.009996 -1.570790 1.580790</pose>
+        <inertial>
+          <pose>-0.053955 0.006548 -0.000592 0.000000 0.000000 0.000000</pose>
+          <mass>0.070310</mass>
+          <inertia>
+            <ixx>0.093370</ixx>
+            <ixy>-0.000936</ixy>
+            <ixz>-0.000240</ixz>
+            <iyy>0.046296</iyy>
+            <iyz>-0.012859</iyz>
+            <izz>0.113515</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_TIBIA_L_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/tibia_l_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_TIBIA_L_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/tibia_l.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_tibia_l' type='revolute'>
+        <child>MP_TIBIA_L</child>
+        <parent>MP_THIGH2_L</parent>
+        <axis>
+          <xyz>0.000000 -1.000000 0.000003</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ANKLE1_L'>
+        <pose>-0.005000 0.036999 -0.308202 3.131590 -1.570790 1.580790</pose>
+        <inertial>
+          <pose>-0.000214 -0.018536 0.013873 0.000000 0.000000 0.000000</pose>
+          <mass>0.167108</mass>
+          <inertia>
+            <ixx>0.120792</ixx>
+            <ixy>-0.000798</ixy>
+            <ixz>-0.000393</ixz>
+            <iyy>0.108855</iyy>
+            <iyz>0.007077</iyz>
+            <izz>0.041871</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ANKLE1_L_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/ankle1_l_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ANKLE1_L_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/ankle1_l.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_ankle1_l' type='revolute'>
+        <child>MP_ANKLE1_L</child>
+        <parent>MP_TIBIA_L</parent>
+        <axis>
+          <xyz>0.000003 1.000000 -0.000003</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ANKLE2_L'>
+        <pose>-0.005000 0.036999 -0.308202 1.560800 -1.570790 1.580790</pose>
+        <inertial>
+          <pose>-0.025995 -0.009506 -0.000503 0.000000 0.000000 0.000000</pose>
+          <mass>0.079446</mass>
+          <inertia>
+            <ixx>0.120792</ixx>
+            <ixy>-0.000798</ixy>
+            <ixz>-0.000393</ixz>
+            <iyy>0.108855</iyy>
+            <iyz>0.007077</iyz>
+            <izz>0.041871</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ANKLE2_L_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/ankle2_l_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+              <ode><mu>1.0</mu><mu2>1.0</mu2></ode>
+              <ode><mu>0.0</mu><mu2>0.0</mu2></ode>
+                <!--mu>10000000.000000</mu>
+                <mu2>10000000.000000</mu2>
+                <!--fdir1>1.000000 1.000000 0.000000</fdir1>
+                <slip1>0.000000</slip1>
+                <slip2>0.000000</slip2>
+              </ode-->
+            </friction>
+            <contact>
+              <ode/><!--min_depth>-0.003</min_depth></ode-->
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ANKLE2_L_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/ankle2_l.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_ankle2_l' type='revolute'>
+        <child>MP_ANKLE2_L</child>
+        <parent>MP_ANKLE1_L</parent>
+        <axis>
+          <xyz>1.000000 -0.000003 0.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_PELVIS_R'>
+        <pose>-0.005000 -0.037000 -0.093550 3.141590 0.000003 -1.570800</pose>
+        <inertial>
+          <pose>0.000000 0.000480 0.018437 0.000000 0.000000 0.000000</pose>
+          <mass>0.197000</mass>
+          <inertia>
+            <ixx>0.122597</ixx>
+            <ixy>0.000711</ixy>
+            <ixz>0.000811</ixz>
+            <iyy>0.110666</iyy>
+            <iyz>-0.007164</iyz>
+            <izz>0.041878</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_PELVIS_R_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/pelvis_r_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_PELVIS_R_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/pelvis_r.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_pelvis_r' type='revolute'>
+        <child>MP_PELVIS_R</child>
+        <parent>MP_BODY</parent>
+        <axis>
+          <xyz>0.000000 0.000003 -1.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_THIGH1_R'>
+        <pose>-0.005000 -0.037000 -0.122202 1.570800 0.000003 -1.570800</pose>
+        <inertial>
+          <pose>0.000079 -0.018242 0.013873 0.000000 0.000000 0.000000</pose>
+          <mass>0.119043</mass>
+          <inertia>
+            <ixx>0.097950</ixx>
+            <ixy>0.001212</ixy>
+            <ixz>-0.000212</ixz>
+            <iyy>0.032848</iyy>
+            <iyz>-0.001947</iyz>
+            <izz>0.114935</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_THIGH1_R_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/thigh1_r_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_THIGH1_R_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/thigh1_r.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_thigh1_r' type='revolute'>
+        <child>MP_THIGH1_R</child>
+        <parent>MP_PELVIS_R</parent>
+        <axis>
+          <xyz>-1.000000 0.000000 0.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_THIGH2_R'>
+        <pose>-0.005000 -0.037000 -0.122202 -0.010200 1.570790 1.560600</pose>
+        <inertial>
+          <pose>0.062965 -0.000323 0.000692 0.000000 0.000000 0.000000</pose>
+          <mass>0.119043</mass>
+          <inertia>
+            <ixx>0.097950</ixx>
+            <ixy>0.001212</ixy>
+            <ixz>-0.000212</ixz>
+            <iyy>0.032848</iyy>
+            <iyz>-0.001947</iyz>
+            <izz>0.114935</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_THIGH2_R_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/thigh2_r_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_THIGH2_R_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/thigh2_r.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_thigh2_r' type='revolute'>
+        <child>MP_THIGH2_R</child>
+        <parent>MP_THIGH1_R</parent>
+        <axis>
+          <xyz>0.000000 1.000000 0.000003</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_TIBIA_R'>
+        <pose>-0.005000 -0.037000 -0.215202 -0.010200 1.570790 1.560600</pose>
+        <inertial>
+          <pose>0.053955 0.006548 -0.000592 0.000000 0.000000 0.000000</pose>
+          <mass>0.070310</mass>
+          <inertia>
+            <ixx>0.093370</ixx>
+            <ixy>-0.000936</ixy>
+            <ixz>-0.000240</ixz>
+            <iyy>0.046296</iyy>
+            <iyz>-0.012859</iyz>
+            <izz>0.113515</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_TIBIA_R_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/tibia_r_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_TIBIA_R_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/tibia_r.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_tibia_r' type='revolute'>
+        <child>MP_TIBIA_R</child>
+        <parent>MP_THIGH2_R</parent>
+        <axis>
+          <xyz>0.000000 1.000000 0.000003</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ANKLE1_R'>
+        <pose>-0.005000 -0.036999 -0.308202 3.131390 1.570790 1.560600</pose>
+        <inertial>
+          <pose>-0.000214 -0.018536 -0.013873 0.000000 0.000000 0.000000</pose>
+          <mass>0.167108</mass>
+          <inertia>
+            <ixx>0.120792</ixx>
+            <ixy>-0.000798</ixy>
+            <ixz>-0.000393</ixz>
+            <iyy>0.108855</iyy>
+            <iyz>0.007077</iyz>
+            <izz>0.041871</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ANKLE1_R_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/ankle1_r_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ANKLE1_R_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/ankle1_r.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_ankle1_r' type='revolute'>
+        <child>MP_ANKLE1_R</child>
+        <parent>MP_TIBIA_R</parent>
+        <axis>
+          <xyz>0.000003 -1.000000 -0.000003</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <link name='MP_ANKLE2_R'>
+        <pose>-0.005000 -0.036999 -0.308202 1.560590 1.570790 1.560600</pose>
+        <inertial>
+          <pose>0.025995 -0.009506 -0.000503 0.000000 0.000000 0.000000</pose>
+          <mass>0.079446</mass>
+          <inertia>
+            <ixx>0.120792</ixx>
+            <ixy>-0.000798</ixy>
+            <ixz>-0.000393</ixz>
+            <iyy>0.108855</iyy>
+            <iyz>0.007077</iyz>
+            <izz>0.041871</izz>
+          </inertia>
+        </inertial>
+        <collision name='MP_ANKLE2_R_collision'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/ankle2_r_coll.stl</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+              <ode><mu>1.0</mu><mu2>1.0</mu2></ode>
+              <ode><mu>0.0</mu><mu2>0.0</mu2></ode>
+                <!--mu>10000000.000000</mu>
+                <mu2>10000000.000000</mu2>
+                <!--fdir1>1.000000 1.000000 0.000000</fdir1>
+                <slip1>0.000000</slip1>
+                <slip2>0.000000</slip2>
+              </ode-->
+            </friction>
+            <contact>
+              <ode/><!--min_depth>-0.003</min_depth></ode-->
+            </contact>
+          </surface>
+        </collision>
+        <visual name='MP_ANKLE2_R_vis'>
+          <pose>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</pose>
+          <geometry>
+            <mesh>
+              <scale>1.000000 1.000000 1.000000</scale>
+              <uri>model://Darwin_OP/meshes/ankle2_r.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <joint name='j_ankle2_r' type='revolute'>
+        <child>MP_ANKLE2_R</child>
+        <parent>MP_ANKLE1_R</parent>
+        <axis>
+          <xyz>1.000000 0.000003 0.000000</xyz>
+          <limit>
+            <lower>-2.617990</lower>
+            <upper>2.617990</upper>
+            <effort>10.000000</effort>
+            <velocity>5.654870</velocity>
+          </limit>
+          <dynamics/>
+        </axis>
+      </joint>
+      <pose>2.000000 -3.000000 0.341700 0.000000 0.000000 0.000000</pose>
+      <static>0</static>
+      <plugin name='darwin_plugin' filename='libdarwin_plugin.so'/>
+    </model>
+    <state world_name='default'>
+      <sim_time>0 0</sim_time>
+      <real_time>0 0</real_time>
+      <wall_time>1368493712 498064739</wall_time>
+      <model name='darwinOP'>
+        <pose>2.000000 -3.000000 0.341700 0.000000 0.000000 0.000000</pose>
+        <link name='MP_ANKLE1_L'>
+          <pose>1.995000 -2.963000 0.033498 3.131590 -1.570790 1.580790</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_ANKLE1_R'>
+          <pose>1.995000 -3.037000 0.033498 3.131390 1.570790 1.560600</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_ANKLE2_L'>
+          <pose>1.995000 -2.963000 0.033498 1.560800 -1.570790 1.580790</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_ANKLE2_R'>
+          <pose>1.995000 -3.037000 0.033498 1.560590 1.570790 1.560600</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_ARM_GRIPPER_FIX_L'>
+          <pose>2.064000 -2.864260 0.271960 0.785398 0.000000 0.000000</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_ARM_GRIPPER_FIX_R'>
+          <pose>2.064000 -3.135740 0.271960 2.356190 0.000000 0.000000</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_ARM_GRIPPER_MOV_L'>
+          <pose>2.112000 -2.857190 0.279031 0.785398 0.000000 0.000000</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_ARM_GRIPPER_MOV_R'>
+          <pose>2.112000 -3.142810 0.279031 2.356190 0.000000 0.000000</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_ARM_HIGH_L'>
+          <pose>2.000000 -2.918000 0.325700 1.570800 -0.785398 -1.570800</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_ARM_HIGH_R'>
+          <pose>2.000000 -3.082000 0.325700 -1.570800 -0.785398 1.570800</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_ARM_LOW_L'>
+          <pose>2.016000 -2.875570 0.283274 -0.785398 0.000000 0.000000</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_ARM_LOW_R'>
+          <pose>2.016000 -3.124430 0.283274 0.785398 0.000000 0.000000</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_BODY'>
+          <pose>2.000000 -3.000000 0.341700 0.000000 0.000000 0.000000</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_HEAD'>
+          <pose>2.000000 -3.000000 0.392350 -1.570800 0.000000 3.141590</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_NECK'>
+          <pose>2.000000 -3.000000 0.365200 0.000000 0.000000 1.570800</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_PELVIS_L'>
+          <pose>1.995000 -2.963000 0.248150 3.141590 0.000003 1.570800</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_PELVIS_R'>
+          <pose>1.995000 -3.037000 0.248150 3.141590 0.000003 -1.570800</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_SHOULDER_L'>
+          <pose>2.000000 -2.939650 0.341700 2.356200 -1.570790 2.356200</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_SHOULDER_R'>
+          <pose>2.000000 -3.060350 0.341700 -2.356200 -1.570790 -2.356200</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_THIGH1_L'>
+          <pose>1.995000 -2.963000 0.219498 -1.570800 0.000003 1.570800</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_THIGH1_R'>
+          <pose>1.995000 -3.037000 0.219498 1.570800 0.000003 -1.570800</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_THIGH2_L'>
+          <pose>1.995000 -2.963000 0.219498 -0.009996 -1.570790 1.580790</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_THIGH2_R'>
+          <pose>1.995000 -3.037000 0.219498 -0.010200 1.570790 1.560600</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_TIBIA_L'>
+          <pose>1.995000 -2.963000 0.126498 -0.009996 -1.570790 1.580790</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+        <link name='MP_TIBIA_R'>
+          <pose>1.995000 -3.037000 0.126498 -0.010200 1.570790 1.560600</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+      </model>
+      <model name='unit_sphere_1'>
+        <pose>2.500000 -3.000000 0.050000 0.000000 0.000000 0.000000</pose>
+        <link name='link'>
+          <pose>2.500000 -3.000000 0.050000 0.000000 0.000000 0.000000</pose>
+          <velocity>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</velocity>
+          <acceleration>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</acceleration>
+          <wrench>0.000000 0.000000 0.000000 0.000000 0.000000 0.000000</wrench>
+        </link>
+      </model>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>3.316920 -5.393890 1.195990 0.000000 0.347643 1.832190</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+    <model name='unit_sphere_1'>
+      <pose>2.500000 -3.000000 0.050000 0.000000 0.000000 0.000000</pose>
+      <link name='link'>
+        <inertial>
+          <mass>1.000000</mass>
+          <inertia>
+            <ixx>1.000000</ixx>
+            <ixy>0.000000</ixy>
+            <ixz>0.000000</ixz>
+            <iyy>1.000000</iyy>
+            <iyz>0.000000</iyz>
+            <izz>1.000000</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <sphere>
+              <radius>0.050000</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <sphere>
+              <radius>0.050000</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0.000000</linear>
+          <angular>0.000000</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <static>0</static>
+    </model>
+  </world>
+</sdf>
