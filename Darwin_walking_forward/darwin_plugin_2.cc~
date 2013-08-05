@@ -1,0 +1,559 @@
+// Author : Bharadwaj-Ramesh
+// Date   : 8th March 2013
+// Email  : br375@drexel.edu
+#include "gazebo/common/common.hh"
+#include "gazebo/physics/physics.hh"
+#include "gazebo/common/Events.hh"
+#include "gazebo/common/PID.hh"
+#include <iostream>
+#include <fstream>
+// A basic program that raises the hand. 
+//
+      float xp[6] = {0,1,2,3,4,5};
+      float shoulderR_loc[] = {0,0,0,0.77,0.77,0};
+      float higharmR_loc[] = {0,1.57,1.57,1.57,1.57,1.57};
+      float elbowR_loc[] = {0,0,1.57,0.77,0.77,1.57};
+      float fingerR_loc[] = {0,0,0,0,-0.5,-0.5};
+      float x1;
+      float higharmR;
+      float shoulderR;
+      float elbowR;
+      float fingerR;
+
+using namespace std;
+namespace gazebo
+{
+  class PID1Joints : public ModelPlugin
+  {
+    public: void Load(physics::ModelPtr _model, sdf::ElementPtr /*_sdf*/)
+    {
+
+      stepCount = 0;
+      this->model_ = _model;
+      k_ = 0;
+      // initialize a PID class
+      this->target_position_ = 0.0;
+//      xp[] = { 0, 1, 2, 3, 4, 5 }; 
+//      yp1[] = {-0.2, 0.1, 0.4, 0.7, 1, 1.2};
+      
+// leg joints
+
+      this->pid_j_ankle2_r.Init(10, 0.01, 4, 0, 0, 25, -25);
+      this->pid_j_ankle2_r.SetCmd(this->target_position_);
+      this->ankle2_r_joint_ = this->model_->GetJoint("j_ankle2_r");
+
+      this->pid_j_ankle1_r.Init(65, 2, 6, 0, 0, 25, -25);
+      this->pid_j_ankle1_r.SetCmd(this->target_position_);
+      this->ankle1_r_joint_ = this->model_->GetJoint("j_ankle1_r");
+
+      this->pid_j_tibia_r.Init(20, 0.0, 1, 0, 0, 25, -25);
+      this->pid_j_tibia_r.SetCmd(this->target_position_);
+      this->tibia_r_joint_ = this->model_->GetJoint("j_tibia_r");
+
+      this->pid_j_thigh2_r.Init(65, 2, 6, 0, 0, 25, -25);
+      this->pid_j_thigh2_r.SetCmd(this->target_position_);
+      this->thigh2_r_joint_ = this->model_->GetJoint("j_thigh2_r");
+
+      this->pid_j_thigh1_r.Init(45, 0.5, 18, 0, 0, 25, -25);
+      this->pid_j_thigh1_r.SetCmd(this->target_position_);
+      this->thigh1_r_joint_ = this->model_->GetJoint("j_thigh1_r");
+// left leg
+      this->pid_j_ankle2_l.Init(10, 0.01, 4, 0, 0, 25, -25);
+      this->pid_j_ankle2_l.SetCmd(this->target_position_);
+      this->ankle2_l_joint_ = this->model_->GetJoint("j_ankle2_l");
+
+      this->pid_j_ankle1_l.Init(65, 2, 6, 0, 0, 25, -25);
+      this->pid_j_ankle1_l.SetCmd(this->target_position_);
+      this->ankle1_l_joint_ = this->model_->GetJoint("j_ankle1_l");
+
+      this->pid_j_tibia_l.Init(20, 0.0, 1, 0, 0, 25, -25);
+      this->pid_j_tibia_l.SetCmd(this->target_position_);
+      this->tibia_l_joint_ = this->model_->GetJoint("j_tibia_l");
+
+      this->pid_j_thigh2_l.Init(65, 2, 6, 0, 0, 25, -25);
+      this->pid_j_thigh2_l.SetCmd(this->target_position_);
+      this->thigh2_l_joint_ = this->model_->GetJoint("j_thigh2_l");
+
+      this->pid_j_thigh1_l.Init(45, 0.5, 18, 0, 0, 25, -25);
+      this->pid_j_thigh1_l.SetCmd(this->target_position_);
+      this->thigh1_l_joint_ = this->model_->GetJoint("j_thigh1_l");
+// left shoulder and upper limb
+      this->pid_j_shoulder_l.Init(10, 0, 3, 0, 0, 25, -25);
+      this->pid_j_shoulder_l.SetCmd(this->target_position_);
+      this->shoulder_l_joint_ = this->model_->GetJoint("j_shoulder_l");
+
+      this->pid_j_high_arm_l.Init(10, 0, 2, 0, 0, 25, -25);
+      this->pid_j_high_arm_l.SetCmd(this->target_position_);
+      this->high_arm_l_joint_ = this->model_->GetJoint("j_high_arm_l");
+
+      this->pid_j_low_arm_l.Init(5, 0, 1, 0, 0, 25, -25);
+      this->pid_j_low_arm_l.SetCmd(this->target_position_);
+      this->low_arm_l_joint_ = this->model_->GetJoint("j_low_arm_l");
+
+      this->pid_j_wrist_l.Init(5, 0, 1, 0, 0, 25, -25);
+      this->pid_j_wrist_l.SetCmd(this->target_position_);
+      this->wrist_l_joint_ = this->model_->GetJoint("j_wrist_l");
+
+      this->pid_j_gripper_l.Init(2, 0, 1, 0, 0, 25, -25);
+      this->pid_j_gripper_l.SetCmd(this->target_position_);
+      this->gripper_l_joint_ = this->model_->GetJoint("j_gripper_l");
+
+// right hand
+
+      this->pid_j_shoulder_r.Init(10, 0, 3, 0, 0, 25, -25);
+      this->pid_j_shoulder_r.SetCmd(this->target_position_);
+      this->shoulder_r_joint_ = this->model_->GetJoint("j_shoulder_r");
+
+      this->pid_j_high_arm_r.Init(10, 0, 2, 0, 0, 25, -25);
+      this->pid_j_high_arm_r.SetCmd(this->target_position_);
+      this->high_arm_r_joint_ = this->model_->GetJoint("j_high_arm_r");
+
+      this->pid_j_low_arm_r.Init(5, 0, 1, 0, 0, 25, -25);
+      this->pid_j_low_arm_r.SetCmd(this->target_position_);
+      this->low_arm_r_joint_ = this->model_->GetJoint("j_low_arm_r");
+
+      this->pid_j_wrist_r.Init(5, 0, 1, 0, 0, 25, -25);
+      this->pid_j_wrist_r.SetCmd(this->target_position_);
+      this->wrist_r_joint_ = this->model_->GetJoint("j_wrist_r");
+
+      this->pid_j_gripper_r.Init(2, 0, 1, 0, 0, 25, -25);
+      this->pid_j_gripper_r.SetCmd(this->target_position_);
+      this->gripper_r_joint_ = this->model_->GetJoint("j_gripper_r");
+
+// neak and head
+      this->pid_j_pan.Init(1, 0, 0, 0, 0, 25, -25);
+      this->pid_j_pan.SetCmd(this->target_position_);
+      this->pan_joint_ = this->model_->GetJoint("j_pan");
+
+      this->pid_j_tilt.Init(1, 0, 0, 0, 0, 25, -25);
+      this->pid_j_tilt.SetCmd(this->target_position_);
+      this->tilt_joint_ = this->model_->GetJoint("j_tilt");
+
+      this->pid_j_pelvis_l.Init(30, 0.03, 30, 0, 0, 25, -25);
+      this->pid_j_pelvis_l.SetCmd(this->target_position_);
+      this->pelvis_l_joint_ = this->model_->GetJoint("j_pelvis_l");
+
+      this->pid_j_pelvis_r.Init(30, 0.03, 30, 0, 0, 25, -25);
+      this->pid_j_pelvis_r.SetCmd(this->target_position_);
+      this->pelvis_r_joint_ = this->model_->GetJoint("j_pelvis_r");
+
+      this->last_update_time_ = this->model_->GetWorld()->GetSimTime();
+      this->update_connection_ = event::Events::ConnectWorldUpdateStart(
+        boost::bind(&PID1Joints::UpdatePID, this));
+    }
+    void UpdatePID()
+    {
+      common::Time current_time = this->model_->GetWorld()->GetSimTime();
+      if (k_ == 0)
+      {
+        
+//        myfile1.open("test_2.csv");
+//        myfile2.open("highArm_1.csv");
+//        myfile3.open("Lowarm_1.csv");
+//        myfile4.open("wrist_1.csv");
+//        myfile5.open("gripper_1.csv");
+       }
+      k_ = k_ + 1 ;
+      double error;
+      double dt    = current_time.Double()
+                   - this->last_update_time_.Double();
+
+
+
+          shoulderR = lip(x1,xp,shoulderR_loc);
+          higharmR = lip(x1,xp,higharmR_loc);
+          elbowR = lip(x1,xp,elbowR_loc);
+          fingerR = lip(x1,xp,fingerR_loc);
+
+          ankle2_l(0.0,dt);
+          ankle2_r(0.0,dt);
+          ankle1_l(0.0,dt);
+          ankle1_r(0.0,dt);
+          tibia_l(0.0,dt);
+          tibia_r(0.0,dt);
+          thigh2_l(0.0,dt);
+          thigh2_r(0.0,dt);
+          thigh1_l(0.0,dt);
+          thigh1_r(0.0,dt);
+          pan_head(0.0,dt);
+          tilt_head(0.0,dt);
+
+
+          shoulder_l(0,dt);
+          high_arm_l(0,dt);
+          low_arm_l(0,dt);
+          wrist_l(0,dt);
+          gripper_l(fingerR,dt);
+
+          shoulder_r(shoulderR,dt);
+          high_arm_r(higharmR,dt);
+          low_arm_r(elbowR,dt);
+          wrist_r(0,dt);
+          gripper_r(fingerR,dt);
+
+          cout << "higharmR :" << higharmR << endl;
+          cout << "x1 :" << x1 << endl;
+
+// head and pelvis 
+      x1 = x1 + 0.0005;
+      if(x1 >=5 )
+      {x1 = x1 - 0.0005;}
+      this->last_update_time_ = current_time;
+
+    }
+
+float lip(float x,float xp[],float yp[])
+{
+  float y;
+  float xp0;
+  float yp0;
+  float xp1;
+  float yp1;
+  for (int i =0; i<=6; i++)
+  {
+    if (xp[i]<=x)
+    {
+      xp0 = xp[i];
+      yp0 = yp[i];
+    }
+    if (xp[i]>x)
+    {
+      xp1 = xp[i];
+      yp1 = yp[i];
+      break;
+    }
+  }
+//  gzdbg << "xp0:{" << xp0  << "} \n";
+//  gzdbg << "xp1:{" << xp1  << "} \n";
+//  gzdbg << "yp0:{" << yp0  << "} \n";
+//  gzdbg << "yp1:{" << yp1  << "} \n";
+  float m = (yp1-yp0)/(xp1-xp0);
+  y = (yp0 +(m*(x-xp0)));
+  return (y);
+}
+
+void ankle2_l(float position, double dt1)
+{
+  float error1;
+  this->pid_j_ankle2_l.SetCmd(position);
+  error1 = this->ankle2_l_joint_->GetAngle(0).Radian() - position ;
+//  gzdbg <<  "Current anklel : " << this->ankle2_l_joint_->GetAngle(0).Radian() << "\n";
+  this->pid_j_ankle2_l.Update(error1, dt1);
+  this->ankle2_l_joint_->SetForce(0, this->pid_j_ankle2_l.GetCmd());
+}
+
+void ankle2_r(float position, double dt1)
+{
+  float error1;
+  this->pid_j_ankle2_r.SetCmd(position);
+  error1 = this->ankle2_r_joint_->GetAngle(0).Radian() - position ;
+//  gzdbg <<  "Current ankler : " << this->ankle2_r_joint_->GetAngle(0).Radian() << "\n";
+  this->pid_j_ankle2_r.Update(error1, dt1);
+  this->ankle2_r_joint_->SetForce(0, this->pid_j_ankle2_r.GetCmd());
+}
+
+void ankle1_l(float position, double dt1)
+{
+  float error1;
+  this->pid_j_ankle1_l.SetCmd(position);
+  error1 = this->ankle1_l_joint_->GetAngle(0).Radian() - position ;
+//  gzdbg <<  "Current footl : " << this->ankle1_l_joint_->GetAngle(0).Radian() << "\n";
+  this->pid_j_ankle1_l.Update(error1, dt1);
+  this->ankle1_l_joint_->SetForce(0, this->pid_j_ankle1_l.GetCmd());
+}
+
+void ankle1_r(float position, double dt1)
+{
+  float error1;
+  this->pid_j_ankle1_r.SetCmd(position);
+  error1 = this->ankle1_r_joint_->GetAngle(0).Radian() - position;
+//  gzdbg <<  "Current footr : " << this->ankle1_r_joint_->GetAngle(0).Radian()<< "\n";
+  this->pid_j_ankle1_r.Update(error1, dt1);
+  this->ankle1_r_joint_->SetForce(0, this->pid_j_ankle1_r.GetCmd());
+}
+
+void tibia_l(float position, double dt1)
+{
+  float error1;
+  this->pid_j_tibia_l.SetCmd(position);
+  error1 = this->tibia_l_joint_->GetAngle(0).Radian() - position;
+//  gzdbg <<  "Current kneel : " << this->tibia_l_joint_->GetAngle(0).Radian()<< "\n";
+  this->pid_j_tibia_l.Update(error1, dt1);
+  this->tibia_l_joint_->SetForce(0, this->pid_j_tibia_l.GetCmd());
+}
+
+void tibia_r(float position, double dt1)
+{
+  float error1;
+  this->pid_j_tibia_r.SetCmd(position);
+  error1 = this->tibia_r_joint_->GetAngle(0).Radian() - position;
+//  gzdbg <<  "Current kneer : " << this->tibia_r_joint_->GetAngle(0).Radian()<< "\n";
+  this->pid_j_tibia_r.Update(error1, dt1);
+  this->tibia_r_joint_->SetForce(0, this->pid_j_tibia_r.GetCmd());
+}
+
+void thigh2_l(float position, double dt1)
+{
+  float error1;
+  this->pid_j_thigh2_l.SetCmd(position);
+  error1 = this->thigh2_l_joint_->GetAngle(0).Radian() - position;
+//  gzdbg <<  "Current hipPl : " << this->thigh2_l_joint_->GetAngle(0).Radian()<< "\n";
+  this->pid_j_thigh2_l.Update(error1, dt1);
+  this->thigh2_l_joint_->SetForce(0, this->pid_j_thigh2_l.GetCmd());
+}
+
+void thigh2_r(float position, double dt1)
+{
+  float error1;
+  this->pid_j_thigh2_r.SetCmd(position);
+  error1 = this->thigh2_r_joint_->GetAngle(0).Radian() - position;
+//  gzdbg <<  "Current hipPr : " << this->thigh2_r_joint_->GetAngle(0).Radian()<< "\n";
+  this->pid_j_thigh2_r.Update(error1, dt1);
+  this->thigh2_r_joint_->SetForce(0, this->pid_j_thigh2_r.GetCmd());
+}
+
+void thigh1_l(float position, double dt1)
+{
+  float error1;
+  this->pid_j_thigh1_l.SetCmd(position);
+  error1 = this->thigh1_l_joint_->GetAngle(0).Radian() - position;
+//  gzdbg <<  "Current hipRl : " << this->thigh1_l_joint_->GetAngle(0).Radian()<< "\n";
+  this->pid_j_thigh1_l.Update(error1, dt1);
+  this->thigh1_l_joint_->SetForce(0, this->pid_j_thigh1_l.GetCmd());
+}
+
+void thigh1_r(float position, double dt1)
+{
+  float error1;
+  this->pid_j_thigh1_r.SetCmd(position);
+  error1 = this->thigh1_r_joint_->GetAngle(0).Radian() - position;
+//  gzdbg <<  "Current hipRr : " << this->thigh1_r_joint_->GetAngle(0).Radian()<< "\n";
+  this->pid_j_thigh1_r.Update(error1, dt1);
+  this->thigh1_r_joint_->SetForce(0, this->pid_j_thigh1_r.GetCmd());
+}
+
+
+void shoulder_l(float position, double dt1)
+{
+  float error1;
+  this->pid_j_shoulder_l.SetCmd(position);
+  error1 = this->shoulder_l_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_shoulder_l.Update(error1, dt1);
+  this->shoulder_l_joint_->SetForce(0, this->pid_j_shoulder_l.GetCmd());
+}
+
+void high_arm_l(float position, double dt1)
+{
+  float error1;
+  this->pid_j_high_arm_l.SetCmd(position);
+  error1 = this->high_arm_l_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_high_arm_l.Update(error1, dt1);
+  this->high_arm_l_joint_->SetForce(0, this->pid_j_high_arm_l.GetCmd());
+}
+
+void low_arm_l(float position, double dt1)
+{
+  float error1;
+  this->pid_j_low_arm_l.SetCmd(position);
+  error1 = this->low_arm_l_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_low_arm_l.Update(error1, dt1);
+  this->low_arm_l_joint_->SetForce(0, this->pid_j_low_arm_l.GetCmd());
+}
+
+void wrist_l(float position, double dt1)
+{
+  float error1;
+  this->pid_j_wrist_l.SetCmd(position);
+  error1 = this->wrist_l_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_wrist_l.Update(error1, dt1);
+  this->wrist_l_joint_->SetForce(0, this->pid_j_wrist_l.GetCmd());
+}
+
+void gripper_l(float position, double dt1)
+{
+  float error1;
+  this->pid_j_gripper_l.SetCmd(position);
+  error1 = this->gripper_l_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_gripper_l.Update(error1, dt1);
+  this->gripper_l_joint_->SetForce(0, this->pid_j_gripper_l.GetCmd());
+}
+
+void shoulder_r(float position, double dt1)
+{
+  float error1;
+  this->pid_j_shoulder_r.SetCmd(position);
+  error1 = this->shoulder_r_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_shoulder_r.Update(error1, dt1);
+  this->shoulder_r_joint_->SetForce(0, this->pid_j_shoulder_r.GetCmd());
+}
+
+void high_arm_r(float position, double dt1)
+{
+  float error1;
+  this->pid_j_high_arm_r.SetCmd(position);
+  error1 = this->high_arm_r_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_high_arm_r.Update(error1, dt1);
+  this->high_arm_r_joint_->SetForce(0, this->pid_j_high_arm_r.GetCmd());
+}
+
+void low_arm_r(float position, double dt1)
+{
+  float error1;
+  this->pid_j_low_arm_r.SetCmd(position);
+  error1 = this->low_arm_r_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_low_arm_r.Update(error1, dt1);
+  this->low_arm_r_joint_->SetForce(0, this->pid_j_low_arm_r.GetCmd());
+}
+
+void wrist_r(float position, double dt1)
+{
+  float error1;
+  this->pid_j_wrist_r.SetCmd(position);
+  error1 = this->wrist_r_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_wrist_r.Update(error1, dt1);
+  this->wrist_r_joint_->SetForce(0, this->pid_j_wrist_r.GetCmd());
+}
+
+void gripper_r(float position, double dt1)
+{
+  float error1;
+  this->pid_j_gripper_r.SetCmd(position);
+  error1 = this->gripper_r_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_gripper_r.Update(error1, dt1);
+  this->gripper_r_joint_->SetForce(0, this->pid_j_gripper_r.GetCmd());
+}
+
+void pan_head(float position, double dt1)
+{
+  float error1;
+  this->pid_j_pan.SetCmd(position);
+  error1 = this->pan_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_pan.Update(error1, dt1);
+  this->pan_joint_->SetForce(0, this->pid_j_pan.GetCmd());
+}
+
+void tilt_head(float position, double dt1)
+{
+  float error1;
+  this->pid_j_tilt.SetCmd(position);
+  error1 = this->tilt_joint_->GetAngle(0).Radian()
+                   - position;
+  this->pid_j_tilt.Update(error1, dt1);
+  this->tilt_joint_->SetForce(0, this->pid_j_tilt.GetCmd());
+}
+
+
+// PID controllers for each joint :
+
+// head
+
+    common::PID pid_j_pan;
+    common::PID pid_j_tilt;
+
+// pelvis
+
+    common::PID pid_j_pelvis_l;
+    common::PID pid_j_pelvis_r;
+
+
+// leg joints
+    common::PID pid_j_ankle2_r;
+    common::PID pid_j_ankle1_r;
+    common::PID pid_j_tibia_r;
+    common::PID pid_j_thigh2_r;
+    common::PID pid_j_thigh1_r;
+
+    common::PID pid_j_ankle2_l;
+    common::PID pid_j_ankle1_l;
+    common::PID pid_j_tibia_l;
+    common::PID pid_j_thigh2_l;
+    common::PID pid_j_thigh1_l;
+
+// left arm 
+    common::PID pid_j_shoulder_l;
+    common::PID pid_j_high_arm_l;
+    common::PID pid_j_low_arm_l;
+    common::PID pid_j_wrist_l;
+    common::PID pid_j_gripper_l;
+
+    common::PID pid_j_shoulder_r;
+    common::PID pid_j_high_arm_r;
+    common::PID pid_j_low_arm_r;
+    common::PID pid_j_wrist_r;
+    common::PID pid_j_gripper_r;
+
+//      float xp [6] = { 0, 1, 2, 3, 4, 5 };
+//      float yp1 [6] = {-0.2, 0.1, 0.4, 0.7, 1, 1.2};
+//      float x;
+//      float y; 
+// pid controllers for the leg joints
+
+    double target_position_;
+    double k_;
+    double angle_shoulder;
+    double angle_elbow;
+    double angle_higharm;
+    double elbow_position;
+    int stepCount;
+    ofstream myfile1;
+    ofstream myfile2;
+    ofstream myfile3;
+    ofstream myfile4;
+    ofstream myfile5;
+// ** Pointers for each joints
+
+// head
+    physics::JointPtr pan_joint_;
+    physics::JointPtr tilt_joint_;
+
+// pelvis
+    physics::JointPtr pelvis_l_joint_;
+    physics::JointPtr pelvis_r_joint_;
+
+
+// legs
+    physics::JointPtr ankle2_r_joint_;
+    physics::JointPtr ankle1_r_joint_;
+    physics::JointPtr tibia_r_joint_;
+    physics::JointPtr thigh2_r_joint_;
+    physics::JointPtr thigh1_r_joint_;
+
+    physics::JointPtr ankle2_l_joint_;
+    physics::JointPtr ankle1_l_joint_;
+    physics::JointPtr tibia_l_joint_;
+    physics::JointPtr thigh2_l_joint_;
+    physics::JointPtr thigh1_l_joint_;
+
+// arm 
+
+    physics::JointPtr shoulder_l_joint_;
+    physics::JointPtr high_arm_l_joint_;
+    physics::JointPtr low_arm_l_joint_;
+    physics::JointPtr wrist_l_joint_;
+    physics::JointPtr gripper_l_joint_;
+
+    physics::JointPtr shoulder_r_joint_;
+    physics::JointPtr high_arm_r_joint_;
+    physics::JointPtr low_arm_r_joint_;
+    physics::JointPtr wrist_r_joint_;
+    physics::JointPtr gripper_r_joint_;
+
+    physics::ModelPtr model_;
+    event::ConnectionPtr update_connection_;
+    common::Time last_update_time_;
+  };
+
+  // Register this plugin with the simulator
+  GZ_REGISTER_MODEL_PLUGIN(PID1Joints)
+}
