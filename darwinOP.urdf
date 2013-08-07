@@ -11,7 +11,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.102 0.109 0.106" /-->
-        <mesh filename="package://darwinOP/meshes/body.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/body.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -19,7 +19,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/body_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/body_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -34,7 +34,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.045 0.022 0.0325" /-->
-        <mesh filename="package://darwinOP/meshes/neck.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/neck.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -42,7 +42,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/neck_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/neck_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -57,7 +57,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!-- box size="0.0634 0.061 0.033" /-->
-        <mesh filename="package://darwinOP/meshes/head.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/head.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -65,7 +65,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/head_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/head_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -104,7 +104,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.016 0.033 0.02165" /-->
-        <mesh filename="package://darwinOP/meshes/shoulder_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/shoulder_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -112,7 +112,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/shoulder_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/shoulder_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -127,7 +127,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.06 0.032 0.035" /-->
-        <mesh filename="package://darwinOP/meshes/arm_high_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/arm_high_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -135,7 +135,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/arm_high_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/arm_high_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -285,7 +285,7 @@
       <origin xyz="0 0 0" rpy="0 0 3.14" />
       <geometry>
         <!--box size="0.016 0.033 0.02165" /-->
-        <mesh filename="package://darwinOP/meshes/shoulder_r.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/shoulder_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -294,7 +294,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 3.14" />
       <geometry>
-        <mesh filename="package://darwinOP/meshes/shoulder_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/shoulder_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -309,7 +309,7 @@
       <origin xyz="0 0 0" rpy="3.14 0 0" />
       <geometry>
         <!--box size="0.06 0.032 0.035"/-->
-        <mesh filename="package://darwinOP/meshes/arm_high_r.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/arm_high_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -317,7 +317,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/arm_high_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/arm_high_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -442,7 +442,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.045 0.08175 0.028652" /-->
-        <mesh filename="package://darwinOP/meshes/pelvis_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/pelvis_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -450,7 +450,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/pelvis_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/pelvis_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -465,7 +465,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.001 0.001 0.001"/-->
-        <mesh filename="package://darwinOP/meshes/thigh1_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/thigh1_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -473,7 +473,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/thigh1_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/thigh1_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -488,7 +488,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.093 0.035 0.045"-->
-        <mesh filename="package://darwinOP/meshes/thigh2_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/thigh2_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -496,7 +496,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/thigh2_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/thigh2_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -511,7 +511,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.093 0.035 0.045"/-->
-        <mesh filename="package://darwinOP/meshes/tibia_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/tibia_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -519,7 +519,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/tibia_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/tibia_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -534,7 +534,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.028652 0.08175 0.045"/-->
-        <mesh filename="package://darwinOP/meshes/ankle1_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/ankle1_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -542,7 +542,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/ankle1_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/ankle1_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -557,7 +557,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.008 0.066 0.104"/-->
-        <mesh filename="package://darwinOP/meshes/ankle2_l.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/ankle2_l.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -565,7 +565,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/ankle2_l_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/ankle2_l_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -580,7 +580,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.045 0.08175 0.028652" /-->
-        <mesh filename="package://darwinOP/meshes/pelvis_r.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/pelvis_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -588,7 +588,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/pelvis_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/pelvis_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
@@ -603,7 +603,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.001 0.001 0.001"/-->
-        <mesh filename="package://darwinOP/meshes/thigh1_r.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/thigh1_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -611,7 +611,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/thigh1_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/thigh1_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
 
@@ -627,7 +627,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.093 0.035 0.045"/-->
-        <mesh filename="package://darwinOP/meshes/thigh2_r.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/thigh2_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -635,7 +635,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/thigh2_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/thigh2_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
 
@@ -651,7 +651,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.093 0.035 0.045"/-->
-        <mesh filename="package://darwinOP/meshes/tibia_r.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/tibia_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -659,7 +659,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/tibia_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/tibia_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
 
@@ -675,7 +675,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.028652 0.08175 0.045"/-->
-        <mesh filename="package://darwinOP/meshes/ankle1_r.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/ankle1_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -683,7 +683,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/ankle1_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/ankle1_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
 
@@ -699,7 +699,7 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!--box size="0.008 0.066 0.104"/-->
-        <mesh filename="package://darwinOP/meshes/ankle2_r.STL"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/ankle2_r.STL"  scale="1 1 1"/>
       </geometry>
       <material name="Grey">
         <color rgba="0.79 0.82 0.93 1.0"/>
@@ -707,7 +707,7 @@
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://darwinOP/meshes/ankle2_r_coll.stl"  scale="1 1 1"/>
+        <mesh filename="package://Darwin_OP/meshes/ankle2_r_coll.stl"  scale="1 1 1"/>
       </geometry>
     </collision>
 
